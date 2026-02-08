@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizDeal - Купля-продажа готового бизнеса</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #1a3c6e;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 32px;
+            color: #4CAF50;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #4CAF50;
+        }
+        
+        .contact-header {
+            text-align: right;
+        }
+        
+        .contact-header a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .contact-header p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* Герой-секция */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #1a3c6e;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #555;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: #3d8b40;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        /* Секция услуг */
+        .services {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #1a3c6e;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 48px;
+            color: #1a3c6e;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1a3c6e;
+        }
+        
+        /* Галерея изображений */
+        .gallery {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-placeholder {
+            background-color: #e9ecef;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: #666;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .image-placeholder i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #1a3c6e;
+        }
+        
+        /* Контакты */
+        .contacts {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .contact-info h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #1a3c6e;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #1a3c6e;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+        
+        .contact-text h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .contact-text a {
+            color: #1a3c6e;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .contact-text a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Футер */
+        footer {
+            background-color: #1a3c6e;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: #4CAF50;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .contact-header {
+                text-align: center;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h1>Biz<span>Deal</span></h1>
+                </div>
+                <div class="contact-header">
+                    <a href="tel:+78001234567">8 (800) 123-45-67</a>
+                    <p>Бесплатный звонок по России</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="container">
+            <h2>Купля-продажа готового бизнеса</h2>
+            <p>Мы помогаем предпринимателям безопасно и выгодно продать или купить действующий бизнес. Гарантируем конфиденциальность, юридическую чистоту и профессиональное сопровождение сделки.</p>
+            <a href="#contacts" class="cta-button">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</a>
+        </div>
+    </section>
+
+    <!-- Секция услуг -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <h3>Оценка бизнеса</h3>
+                    <p>Профессиональная оценка стоимости предприятия с учетом активов, доходов и рыночных перспектив.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Продажа бизнеса</h3>
+                    <p>Полное сопровождение продажи: поиск покупателей, переговоры, юридическое оформление.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Покупка бизнеса</h3>
+                    <p>Подбор и анализ готовых бизнесов, проверка юридической чистоты, помощь в оформлении сделки.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Галерея -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">Мы работаем с бизнесом в разных сферах</h2>
+            <div class="gallery-grid">
+                <!-- Промпты для ИИ-генерации изображений -->
+                <div class="gallery-item">
+                    <div class="image-placeholder">
+                        <i class="fas fa-store"></i>
+                        <p>Промпт для ИИ: "Профессиональная фотография успешной сделки купли-продажи бизнеса, два деловых человека пожимают руки в современном офисе, деловые документы на столе, фон с городским пейзажем из окна"</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-placeholder">
+                        <i class="fas fa-coffee"></i>
+                        <p>Промпт для ИИ: "Успешный кафе-бизнес в центре города, современный интерьер, довольные клиенты за столиками, бармен готовит кофе, уютная атмосфера"</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-placeholder">
+                        <i class="fas fa-dumbbell"></i>
+                        <p>Промпт для ИИ: "Современный фитнес-центр с новым оборудованием, люди занимаются на тренажерах, чистые помещения, профессиональные тренеры"</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-placeholder">
+                        <i class="fas fa-laptop"></i>
+                        <p>Промпт для ИИ: "ИТ-компания в современном офисе, программисты работают за компьютерами, стеклянные перегородки, растения, whiteboard с диаграммами"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contacts" id="contacts">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Контакты для связи</h3>
+                    <p>Мы готовы ответить на ваши вопросы и предложить лучшие варианты для покупки или продажи бизнеса.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Телефон</h4>
+                            <a href="tel:+78001234567">8 (800) 123-45-67</a>
+                            <p>Бесплатный звонок по России</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <a href="mailto:info@bizdeal.ru">info@bizdeal.ru</a>
+                            <p>Ответим в течение 24 часов</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Адрес офиса</h4>
+                            <p>г. Москва, ул. Деловая, д. 15, офис 302</p>
+                            <p>БЦ "Деловой центр"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Рабочее время</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="far fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Пн-Пт</h4>
+                            <p>9:00 - 19:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="far fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Сб</h4>
+                            <p>10:00 - 16:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="far fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Вс</h4>
+                            <p>Выходной</p>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px;">Мы в социальных сетях</h3>
+                    <p>Подписывайтесь на нас, чтобы быть в курсе новых предложений</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h1>Biz<span>Deal</span></h1>
+                </div>
+                
+                <div class="social-icons">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 BizDeal. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка к контактам при нажатии на кнопку
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#contacts').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        // Выделение номера телефона при клике
+        const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+        phoneLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                // Можно добавить аналитику или другое действие
+                console.log('Звонок по номеру: ' + this.textContent);
+            });
+        });
+        
+        // Анимация появления элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+        
+        // Наблюдаем за карточками услуг
+        document.querySelectorAll('.service-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
